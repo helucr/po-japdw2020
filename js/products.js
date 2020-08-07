@@ -3,13 +3,29 @@
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e) {
 
-            document.addEventListener("DOMContentLoaded", function(e) {
-                getJSONData(PRODUCTS_URL).then(function(resultObj) {
-                    if (resultObj.status === "ok") {
-                        sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
-                    }
-                });
-            });
-
+            var getJSONData = function(url) {
+                var result = {};
+                showSpinner();
+                return fetch(url)
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json();
+                        } else {
+                            throw Error(response.statusText);
+                        }
+                    })
+                    .then(function(response) {
+                        result.status = 'ok';
+                        result.data = response;
+                        hideSpinner();
+                        return result;
+                    })
+                    .catch(function(error) {
+                        result.status = 'error';
+                        result.data = error;
+                        hideSpinner();
+                        return result;
+                    });
+            }
 
         }
