@@ -24,6 +24,7 @@ function verifyLogin() {
         console.log = localStorage.getItem('user')
 
 
+
     };
 };
 
