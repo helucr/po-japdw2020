@@ -127,7 +127,7 @@ function search() {
         document.getElementById("prodList").innerHTML = htmlContentToAppend;
     }
     if (document.getElementById("prodList").innerHTML === '') {
-        document.getElementById("prodList").innerHTML = ` <br><br><h3 class="mb-1"> No se han encontraron resultados para su búsqueda. </h3> `;
+        document.getElementById("prodList").innerHTML = ` <br><br><h4 class="mb-1"> No se han encontraron resultados para su búsqueda. </h4> `;
     }
 }
 
