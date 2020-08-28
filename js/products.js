@@ -126,11 +126,10 @@ function search() {
         }
         document.getElementById("prodList").innerHTML = htmlContentToAppend;
     }
-    if (htmlContentToAppend.innerHTML = '') {
-        htmlContentToAppend.innerHTML += 'No se encontraron resultados para la búsqueda.'
+    if (document.getElementById("prodList").innerHTML === '') {
+        document.getElementById("prodList").innerHTML = ` <br><br><h3 class="mb-1"> No se han encontraron resultados para su búsqueda. </h3> `;
     }
 }
-
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
