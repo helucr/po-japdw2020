@@ -206,4 +206,8 @@ a.custom-card:hover {
 }
 
 
-/* FIN ESTILOS DEL FORMULARIO LOGIN */
+/* BOTON VOLVER A PRODUCTOS PRODUCT-INFO.HTML MARGIN TOP */
+
+#volverProductos {
+    margin-top: 25px;
+}

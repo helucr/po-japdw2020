@@ -13,6 +13,12 @@
     <link href='css/font-awesome.min.css' rel='stylesheet'>
     <link href='css/bootstrap.min.css' rel='stylesheet'>
     <link href='css/styles.css' rel='stylesheet'>
+
+    <!-- Formato estrella comentario -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -25,14 +31,61 @@
             <a class='py-2 d-none d-md-inline-block' href='cart.html'>Mi carrito</a>
         </div>
     </nav>
-    <div class='container p-5'>
+    <!-- <div class='container p-5'>
         <div class='alert alert-danger' role='alert' style='position: relative; width:auto; top: 0;'>
             <h4 class='alert-heading'>¡A trabajar! :)</h4>
             <p>Esta sección corresponde a: Entrega 3 (Fecha de entrega: 13/09/2020) y Entrega 4 (Fecha de entrega: 20/09/2020).</p>
             <hr>
             <p class='mb-0'>Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
         </div>
+    </div> -->
+
+    <div class="container mt-5">
+        <div class="text-center p-4">
+            <h2>Descripción del producto</h2>
+            <p class="lead">Encontrarás aquí toda la información del producto seleccionado.</p>
+            <p class="small alert-warning py-3"><strong>Nota: </strong>por simplicidad, cualquiera sea el producto seleccionado previamente, siempre se visualizará la presente: <strong>Chevrolet Onix Joy</strong>.</p>
+        </div>
+        <h3 id="productName"></h3>
+        <hr class="my-3">
+        <dl>
+            <dt>Descripción</dt>
+            <dd>
+                <p id="productDescription"></p>
+            </dd>
+
+            <dt>Vendidos hasta el momento</dt>
+            <dd>
+                <p id="soldCount"></p>
+            </dd>
+
+            <dt>Imágenes ilustrativas</dt>
+            <dd>
+                <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
+                </div>
+            </dd>
+        </dl>
+
+
+
+        <!-- FORMULARIO DE COMENTARIOS -->
+
+        <div class="container">
+            <h2 class="text-center">Opiniones</h2>
+
+            <div class="card">
+                <div class="card-body" id="commentContainer">
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- VOLVER A PRODUCTOS -->
+        <a type="button" class="btn btn-light btn-lg btn-block" id="volverProductos" href="products.html">Ver productos</a>
+
     </div>
+
     <footer class='text-muted'>
         <div class='container'>
             <p class='float-right'>
