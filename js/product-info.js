@@ -52,10 +52,7 @@ function showComments(array) {
     }
 
     commentContainer.innerHTML = htmlCommentToAppend;
-    let puntuacion = comment.score
-    for (let i = 0; i < puntuacion; i++) {
-        document.getElementById = "puntuacionContainer".innerHTML = `<span class="float-right"><i class="text-warning fa fa-star"></i></span>`
-    }
+
 }
 
 
