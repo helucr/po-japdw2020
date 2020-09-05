@@ -20,11 +20,15 @@ function showImagesGallery(array) {
     }
 }
 
+/* Mostrar comentarios y puntuación con estrellas */
 function showComments(array) {
     let htmlCommentToAppend = []
 
     for (let i = 0; i < array.length; i++) {
         let comment = array[i];
+
+        let checkedStars = `<span class="fa fa-star checked"></span>`.repeat(comment.score)
+        let uncheckedStars = `<span class="fa fa-star"></span>`.repeat(5 - comment.score)
 
         htmlCommentToAppend +=
 
@@ -35,11 +39,9 @@ function showComments(array) {
         	    </div>
                 <div class="col-md-10">
                     <a class="float-left" ><strong>${comment.user}</strong></a>
-        	        <p id="puntuacionContainer" class="float-right"> 
-                    Puntuación ${comment.score}/5
-        	            
-
-        	       </p>
+                    <p id="scoreContainer" class="float-right"> 
+                    ${checkedStars} ${uncheckedStars}
+                    </p>
         	       <div class="clearfix"></div>
         	        <p>${comment.description}</p>
         	        <p>
@@ -52,7 +54,6 @@ function showComments(array) {
     }
 
     commentContainer.innerHTML = htmlCommentToAppend;
-
 }
 
 
