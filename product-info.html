@@ -19,6 +19,9 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+    <!-- Calcular hace cuanto se hizo el comentario -->
+    <script src="http://momentjs.com/downloads/moment.min.js"></script>
+
 </head>
 
 <body>
@@ -68,21 +71,68 @@
 
 
 
-        <!-- FORMULARIO DE COMENTARIOS -->
+
+        <!-- LISTADO DE COMENTARIOS REALIZADOS -->
+        <h2 class="text-center">Opiniones</h2>
+        <br>
+        <div class="card">
+
+
+            <div class="card-body" id="commentContainer">
+
+            </div>
+
+        </div>
+        <br>
+
+        <!-- FORMULARIO DE NUEVOS COMENTARIOS -->
 
         <div class="container">
-            <h2 class="text-center">Opiniones</h2>
 
-            <div class="card">
-                <div class="card-body" id="commentContainer">
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" />
+                </div>
+
+                <div class="col-md-10">
+                    <a class="float-left" id="loggedUserComment"><strong>Ingrese su comentario</strong></a>
+                    <br>
+                    <p id="setScore" class="float-right">
+
+                    </p>
+                    <div class="clearfix"></div>
+                    <div>
+                        <div class="rate ">
+                            <input type="radio" id="star5" name="rate" value="5" onclick="setNewCommentRating()" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4" onclick="setNewCommentRating()" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" onclick="setNewCommentRating()" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" onclick="setNewCommentRating()" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" onclick="setNewCommentRating()" />
+                            <label for="star1" title="text">1 star</label>
+                        </div>
+                        <textarea name="newComment" id="commentTextarea" cols="63" rows="5" placeholder="Ingresa tu opinión."></textarea>
+                        <button onclick="addNewComment()" class="float-md-right btn text-white btn-danger"> <i class="fa fa-star"></i> Opinar</button>
+
+
+                    </div>
+
+
+
 
                 </div>
 
             </div>
         </div>
+    </div>
 
-        <!-- VOLVER A PRODUCTOS -->
-        <a type="button" class="btn btn-light btn-lg btn-block" id="volverProductos" href="products.html">Ver productos</a>
+
+
+    <!-- VOLVER A PRODUCTOS -->
+    <a type="button" class="btn btn-light btn-lg btn-block" id="volverProductos" href="products.html">Ver productos</a>
 
     </div>
 

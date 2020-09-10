@@ -1,5 +1,6 @@
 var product = {};
 var comment = {};
+const newCommentRaiting = '';
 
 function showImagesGallery(array) {
 
@@ -44,10 +45,7 @@ function showComments(array) {
                     </p>
         	       <div class="clearfix"></div>
         	        <p>${comment.description}</p>
-        	        <p>
-        	            <a class="float-right btn btn-outline-primary ml-2"> <i class="fa fa-comment"></i> Opinar</a>
-        	            <a class="float-right btn text-white btn-danger"> <i class="fa fa-star"></i> Puntuar</a>
-        	       </p>
+        	        
         	    </div>
 	        </div>
 `
@@ -55,6 +53,57 @@ function showComments(array) {
 
     commentContainer.innerHTML = htmlCommentToAppend;
 }
+/* Definir valoración de nuevo comentario */
+function setNewCommentRating() {
+    let inputs = document.getElementsByName('rate');
+
+    for (let i = 0, length = input.length; i < length; i++) {
+        if (inputs[i].checked) {
+            // do whatever you want with the checked radio
+            newCommentRaiting = inputs[i].value;
+
+            // only one radio can be logically checked, don't check the rest
+            break;
+        }
+    }
+
+}
+/* Botón OPINAR ---> Agregar nuevo comentario */
+function addNewComment() {
+    /* obtener hora actual */
+    var date = new Date();
+    var dateString = date.toLocaleString();
+
+    /* agregar al html */
+    let htmlNewCommentToAppend = []
+    commentText = document.getElementById('commentTextarea')
+
+    let checkedStars = `<span class="fa fa-star checked"></span>`.repeat(newCommentRaiting)
+    let uncheckedStars = `<span class="fa fa-star"></span>`.repeat(5 - newCommentRaiting)
+
+    htmlNewCommentToAppend +=
+
+        `<div class="row">
+        	    <div class="col-md-2">
+        	        <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
+        	        <p class="text-secondary text-center">${dateString}</p>
+        	    </div>
+                <div class="col-md-10">
+                    <a class="float-left" ><strong>${localStorage.getItem('user')}</strong></a>
+                    <p id="scoreContainer" class="float-right"> 
+                    ${checkedStars} ${uncheckedStars}
+                    </p>
+        	       <div class="clearfix"></div>
+        	        <p>${commentText.value}</p>
+        	        
+        	    </div>
+	        </div>
+`;
+    commentContainer.innerHTML += htmlNewCommentToAppend
+}
+
+
+
 
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
