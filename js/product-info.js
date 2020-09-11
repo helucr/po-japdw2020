@@ -1,6 +1,6 @@
 var product = {};
 var comment = {};
-const newCommentRaiting = '';
+const newCommentRaiting = 0;
 
 function showImagesGallery(array) {
 
@@ -54,18 +54,9 @@ function showComments(array) {
     commentContainer.innerHTML = htmlCommentToAppend;
 }
 /* Definir valoración de nuevo comentario */
-function setNewCommentRating() {
-    let inputs = document.getElementsByName('rate');
-
-    for (let i = 0, length = input.length; i < length; i++) {
-        if (inputs[i].checked) {
-            // do whatever you want with the checked radio
-            newCommentRaiting = inputs[i].value;
-
-            // only one radio can be logically checked, don't check the rest
-            break;
-        }
-    }
+function setNewCommentRating(valor) {
+    newCommentRaiting = valor;
+    console.log(newCommentRaiting)
 
 }
 /* Botón OPINAR ---> Agregar nuevo comentario */
@@ -102,7 +93,38 @@ function addNewComment() {
     commentContainer.innerHTML += htmlNewCommentToAppend
 }
 
+function showRelatedProducts(relatedProdArray) {
+    getJSONData(PRODUCTS_URL).then(function(resultObj) {
+        if (resultObj.status === "ok") {
+            productList = resultObj.data;
+            console.log(productList)
 
+            let htmlRelatedProducts = "";
+
+            for (let i = 0; i < relatedProdArray.length; i++) {
+                let relatedProductPosition = relatedProdArray[i];
+                let relatedProduct = productList[relatedProductPosition];
+                console.log(relatedProductPosition)
+                console.log(relatedProduct)
+                htmlRelatedProducts += `
+                <div class= "col-lg-3 col-md-4 col-6 border">
+                    <div id="relatedVideoProdImg" class= "row">
+                        <img class="img-fluid p-2" src="` + relatedProduct.imgSrc + `">                                              
+                    </div>                   
+                    <div "relatedVideoProdInfo" class= "row p-2">
+                    <p>` + relatedProduct.name + `</p> 
+                    <p>` + relatedProduct.description + `</p>
+                    </div>
+                    <div class= "row p-2">
+                    <a href="videoProds-info.html">Ver</a>
+                    </div>                     
+                </div>`
+            }
+            console.log(htmlRelatedProducts)
+            document.getElementById("relatedProductsContainer").innerHTML = htmlRelatedProducts;
+        }
+    })
+}
 
 
 
@@ -124,7 +146,9 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
+            showRelatedProducts(product.relatedProducts);
         }
+
     });
 
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj) {
