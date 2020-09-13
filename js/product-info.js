@@ -1,6 +1,6 @@
 var product = {};
 var comment = {};
-const newCommentRaiting = 0;
+var newCommentRaiting = 0;
 
 function showImagesGallery(array) {
 
