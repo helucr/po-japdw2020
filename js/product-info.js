@@ -25,6 +25,7 @@ function showImagesGallery(array) {
 function showComments(array) {
     let htmlCommentToAppend = []
 
+
     for (let i = 0; i < array.length; i++) {
         let comment = array[i];
 
@@ -36,7 +37,7 @@ function showComments(array) {
             `<div class="row">
         	    <div class="col-md-2">
         	        <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
-        	        <p class="text-secondary text-center">${comment.dateTime}</p>
+        	        <p class="text-secondary text-center">${moment(comment.dateTime).fromNow()}</p>
         	    </div>
                 <div class="col-md-10">
                     <a class="float-left" ><strong>${comment.user}</strong></a>
@@ -63,7 +64,7 @@ function setNewCommentRating(valor) {
 function addNewComment() {
     /* obtener hora actual */
     var date = new Date();
-    var dateString = date.toLocaleString();
+
 
     /* agregar al html */
     let htmlNewCommentToAppend = []
@@ -77,7 +78,7 @@ function addNewComment() {
         `<div class="row">
         	    <div class="col-md-2">
         	        <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
-        	        <p class="text-secondary text-center">${dateString}</p>
+        	        <p class="text-secondary text-center">${moment(date).fromNow()}</p>
         	    </div>
                 <div class="col-md-10">
                     <a class="float-left" ><strong>${localStorage.getItem('user')}</strong></a>
@@ -115,8 +116,8 @@ function showRelatedProducts(relatedProdArray) {
                     <p>` + relatedProduct.name + `</p> 
                     <p>` + relatedProduct.description + `</p>
                     </div>
-                    <div class= "row p-2">
-                    <a href="videoProds-info.html">Ver</a>
+                    <div class= "row p-2 ">
+                    <a href="product-info.html">Ver</a>
                     </div>                     
                 </div>`
             }
