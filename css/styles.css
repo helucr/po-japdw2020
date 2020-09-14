@@ -263,4 +263,31 @@ a.custom-card:hover {
 }
 
 
-/* DropDownBTN Usuario */
+/* Estilos Site-header y dropdown (button)( usuario */
+
+.site-header {
+    background-color: #343a40;
+}
+
+.site-header a {
+    color: white;
+    text-decoration: none;
+}
+
+.site-header a:hover {
+    color: #d41c6c;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.site-header button {
+    color: white;
+}
+
+.site-header button:hover {
+    color: #d41c6c;
+    font-weight: bold;
+}
+
+
+/* Estilo categorias INDEX.HTML */
