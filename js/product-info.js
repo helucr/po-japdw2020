@@ -5,19 +5,25 @@ var newCommentRaiting = 0;
 function showImagesGallery(array) {
 
     let htmlContentToAppend = "";
+    let htmlSlideMenu = "";
 
     for (let i = 0; i < array.length; i++) {
         let imgSrc = array[i];
 
         htmlContentToAppend += `
-        <div class="col-lg-3 col-md-4 col-6">
-            <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="` + imgSrc + `" alt="">
-            </div>
-        </div>
+        <li id="slide${i+1}">
+            <img src="${imgSrc}"/>
+        </li>
+        `
+        htmlSlideMenu += `
+        <li>
+            <a href="#slide${i+1}"></a>
+        </li>
         `
 
         document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
+        document.getElementById("slideMenu").innerHTML = htmlSlideMenu;
+
     }
 }
 
@@ -116,7 +122,7 @@ function showRelatedProducts(relatedProdArray) {
                     <p>` + relatedProduct.name + `</p> 
                     <p>` + relatedProduct.description + `</p>
                     </div>
-                    <div class= "row p-2 ">
+                    <div class= "row p-2 a-center ">
                     <a href="product-info.html">Ver</a>
                     </div>                     
                 </div>`
@@ -140,10 +146,14 @@ document.addEventListener("DOMContentLoaded", function(e) {
             let productNameHTML = document.getElementById("productName");
             let productDescriptionHTML = document.getElementById("productDescription");
             let soldCountHTML = document.getElementById("soldCount");
+            let costHTML = document.getElementById("productCost");
+
 
             productNameHTML.innerHTML = product.name;
             productDescriptionHTML.innerHTML = product.description;
             soldCountHTML.innerHTML = product.soldCount;
+            costHTML.innerHTML = product.currency + " " + product.cost
+
 
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);

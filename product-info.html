@@ -51,93 +51,134 @@
         </div>
         <h3 id="productName"></h3>
         <hr class="my-3">
-        <dl>
-            <dt>Descripción</dt>
-            <dd>
-                <p id="productDescription"></p>
-            </dd>
 
-            <dt>Vendidos hasta el momento</dt>
-            <dd>
-                <p id="soldCount"></p>
-            </dd>
+        <div class="row">
+            <div class="col-6">
+                <div class="sliderContainer">
 
-            <dt>Imágenes ilustrativas</dt>
-            <dd>
-                <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
-                </div>
-            </dd>
-        </dl>
+                    <ul class="slider" id="productImagesGallery">
+                        <!-- Se agrega cada una de las imágenes -->
 
-        <!-- Mostrar productos relacionados -->
-        <dt>Productos relacionados</dt>
-        <hr class="my-3">
-        <dd>
-            <div class="container-fluid">
-                <div class="row" id="relatedProductsContainer">
+                    </ul>
+
+                    <ul class="menu" id="slideMenu">
+                        <!-- Se van agregando los distintos items del menu para mostrar. -->
+                    </ul>
+
                 </div>
             </div>
-        </dd>
+            <div class="col-6">
+                <dt>Descripción</dt>
+                <dd>
+                    <p id="productDescription"></p>
+                </dd>
 
+                <dt>Vendidos hasta el momento</dt>
+                <dd>
+                    <p id="soldCount"></p>
+                </dd>
+                <div class="row">
+                    <div class="col-3">
 
-        <!-- LISTADO DE COMENTARIOS REALIZADOS -->
-        <br>
-        <h3 class="text-center">Opiniones</h3>
-        <hr class="my-3">
-
-        <div class="card">
-
-
-            <div class="card-body" id="commentContainer">
+                        <p id="productCost"></p>
+                    </div>
+                    <div class="col-3">
+                        <dd>
+                            <button id="btnAddToCart" type="button" class="btn btn-primary">Agregar al carrito</button>
+                        </dd>
+                    </div>
+                </div>
 
             </div>
-
         </div>
-        <br>
-
-        <!-- FORMULARIO DE NUEVOS COMENTARIOS -->
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-md-2">
-                    <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" />
-                </div>
-
-                <div class="col-md-10">
-                    <a class="float-left" id="loggedUserComment"><strong>Ingrese su comentario</strong></a>
-                    <br>
-                    <p id="setScore" class="float-right">
-
-                    </p>
-                    <div class="clearfix"></div>
-                    <div>
-                        <div class="rate ">
-                            <input type="radio" id="star5" name="rate" value="5" onclick=setNewCommentRating(5) />
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" onclick=setNewCommentRating(4) />
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" onclick=setNewCommentRating(3) />
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" onclick=setNewCommentRating(2) />
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" onclick=setNewCommentRating(1) />
-                            <label for="star1" title="text">1 star</label>
+        <div class="row">
+            <div class="col-12">
+                <br>
+                <!-- Mostrar productos relacionados -->
+                <dt>Productos relacionados</dt>
+                <hr class="my-3">
+                <dd>
+                    <div class="container-fluid">
+                        <div class="row" id="relatedProductsContainer">
                         </div>
-                        <textarea name="newComment" id="commentTextarea" cols="63" rows="5" placeholder="Ingresa tu opinión."></textarea>
-                        <button onclick="addNewComment()" class="float-md-right btn text-white btn-danger"> <i class="fa fa-star"></i> Opinar</button>
+                    </div>
+                </dd>
+            </div>
+        </div>
 
+        <div class="row">
+
+            <div class="col-12">
+
+                <!-- LISTADO DE COMENTARIOS REALIZADOS -->
+                <br>
+                <h3 class="text-center">Opiniones</h3>
+                <hr class="my-3">
+
+                <div class="card">
+
+
+                    <div class="card-body" id="commentContainer">
 
                     </div>
 
-
-
-
                 </div>
+                <br>
 
+
+
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <!-- FORMULARIO DE NUEVOS COMENTARIOS -->
+
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" />
+                        </div>
+
+                        <div class="col-md-10">
+                            <a class="float-left" id="loggedUserComment"><strong>Ingrese su comentario</strong></a>
+                            <br>
+                            <p id="setScore" class="float-right">
+
+                            </p>
+                            <div class="clearfix"></div>
+                            <div>
+                                <div class="rate ">
+                                    <input type="radio" id="star5" name="rate" value="5" onclick=setNewCommentRating(5) />
+                                    <label for="star5" title="text">5 stars</label>
+                                    <input type="radio" id="star4" name="rate" value="4" onclick=setNewCommentRating(4) />
+                                    <label for="star4" title="text">4 stars</label>
+                                    <input type="radio" id="star3" name="rate" value="3" onclick=setNewCommentRating(3) />
+                                    <label for="star3" title="text">3 stars</label>
+                                    <input type="radio" id="star2" name="rate" value="2" onclick=setNewCommentRating(2) />
+                                    <label for="star2" title="text">2 stars</label>
+                                    <input type="radio" id="star1" name="rate" value="1" onclick=setNewCommentRating(1) />
+                                    <label for="star1" title="text">1 star</label>
+                                </div>
+                                <textarea name="newComment" id="commentTextarea" cols="63" rows="5" placeholder="Ingresa tu opinión."></textarea>
+                                <button onclick="addNewComment()" class="float-md-right btn text-white btn-danger"> <i class="fa fa-star"></i> Opinar</button>
+
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+
+
+
 
 
 
