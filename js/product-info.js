@@ -98,6 +98,7 @@ function addNewComment() {
 	        </div>
 `;
     commentContainer.innerHTML += htmlNewCommentToAppend
+    commentText.value = ""
 }
 
 function showRelatedProducts(relatedProdArray) {
