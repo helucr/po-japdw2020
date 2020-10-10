@@ -63,9 +63,8 @@ function showComments(array) {
 /* Definir valoración de nuevo comentario */
 function setNewCommentRating(valor) {
     newCommentRaiting = valor;
-    console.log(newCommentRaiting)
-
 }
+
 /* Botón OPINAR ---> Agregar nuevo comentario */
 function addNewComment() {
     /* obtener hora actual */
