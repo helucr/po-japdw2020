@@ -1,68 +1,106 @@
+let arrayArticles = [];
+let allSubtotals = 0;
+let rateUSD = 40;
+
+/* esta funcion recibe un producto y devuelve el costo total segun su precio unitario y la cantidad a comprar, si el valor está en pesos utilizando rateUSD se convierte el precio a Dólares */
+function subtotalPrice(count, index) {
+    let sub = 0;
+    if (arrayArticles[index].currency === "UYU") {
+        sub = (arrayArticles[index].unitCost * count) / rateUSD;
+
+    } else {
+        sub = arrayArticles[index].unitCost * count;
+    }
+    return sub;
+}
+
+/* Función que actualiza los subtotales al cambiar los valores de los input (cantidad de articulos a comprar) */
+function updateAllSubTotal() {
+    let subtotalArray = document.getElementsByClassName("countArticle"); /* Se genera un array con los inputs (uno para cada artículo) */
+    let subtotal = 0;
+    for (let i = 0; i < subtotalArray.length; i++) {
+        subtotal += subtotalPrice(subtotalArray[i].value, i); /* se recorre el array y del se toma  el valor de cada articulo en funcion de su index (i) y se agregar a subtotal*/
+    }
+    document.getElementById("subtotalCost").innerHTML = "USD " + subtotal; /* se modifica el subtotal general */
+    allSubtotals = subtotal;
+    totalPrice();
+
+}
+
+function shippingCost() {
+
+}
+
+function totalPrice() {
+    let total = allSubtotals;
+    document.getElementById("totalCost").innerHTML = "USD " + total;
+}
+
+function addEventCount() {
+    let subtotalArray = document.getElementsByClassName("countArticle"); /* Se genera un array con los inputs (uno para cada artículo) */
+
+    for (let i = 0; i < subtotalArray.length; i++) {
+        subtotalArray[i].addEventListener("change", function() {
+            if (arrayArticles[i].currency === "UYU") {
+                document.getElementById("productSubtotal-" + i).innerHTML = "USD " + subtotalArray[i].value * arrayArticles[i].unitCost / rateUSD;
+            } else {
+                document.getElementById("productSubtotal-" + i).innerHTML = arrayArticles[i].currency + " " + subtotalArray[i].value * arrayArticles[i].unitCost;
+            }
+
+            updateAllSubTotal();
+            calcTotal();
+
+        });
+
+    }
+
+
+}
+
+
+function showCartArticles(articles) {
+    let HTMLcont = "";
+    let articlePriceUSD = 0;
+    for (i = 0; i < articles.length; i++) {
+
+        /* si precio está en pesos cambiar a dólares */
+        if (articles[i].currency === "UYU") {
+            articlePriceUSD = articles[i].unitCost / rateUSD
+        } else {
+            articlePriceUSD = articles[i].unitCost
+        }
+
+        HTMLcont += `
+        <tr>
+        <td scope="col"><img src='${articles[i].src}' width="50px"></td>
+        <td scope="col">${articles[i].name}</td>
+        <td scope="col"> USD ${articlePriceUSD}</td>
+        <td scope="col"><input class="form-control countArticle" style="width:60px;" type="number" id="productCount-${i}" value="${articles[i].count}" min="1"></td>
+        <td scope="col"><span id="productSubtotal-${i}" style="font-weight:bold;"> USD ${articlePriceUSD * articles[i].count}</span></td>
+    </tr>
+            `
+    }
+    document.getElementById("cart-products").innerHTML = HTMLcont;
+    addEventCount();
+    updateAllSubTotal();
+    totalPrice();
+
+
+}
+
+
+
+
+
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
-
-function showCartProdsAndTotalCost(array) {
-
-    HTMLcont = "";
-    for (i = 0; i < array.length; i++) {
-        HTMLcont += `
-                <tr>
-                  <td scope="col"><img src="` + array[i].src + `" style="width:60px"></td>
-                  <td scope="col">` + array[i].name + `</td>
-                  <td scope="col">` + array[i].currency + array[i].unitCost + `</td>
-                  <td scope="col"><input type="number" value="` + array[i].count + `" min="1"></td>
-                  <td scope="col">` + array[i].currency + productSubTotal(array[i]) + `</td>
-                </tr>
-        `
-    }
-    document.getElementById("cart-products").innerHTML = HTMLcont;
-}
-
-//esta funcion recibe un producto y devuelve el costo total segun su precio unitario y la cantidad a comprar
-function productSubTotal(cartItem) {
-    let subtotalCost = 0;
-    subtotalCost = cartItem.unitCost * cartItem.count
-    return subtotalCost;
-
-}
-
-function productSubTotalTotal(array) {
-    let subtotalCost = 0;
-    for (i = 0; i < array.length; i++) {
-        subtotalCost += array[i].unitCost * array[i].count
-    }
-    return subtotalCost;
-}
-
-//esta funcion recibe el array de todos los productos del carrito
-function cartTotalCost(array) {
-
-    // completar la funcion que retorne el total de la venta, 
-    //coincide con la suma de los subtotales por videojuego
-    let totalCost = 0;
-    array.forEach(product => {
-
-        totalCost += productSubTotal(product);
-    });
-
-    return totalCost;
-}
-
-//completar el codigo realizando la peticion directamente con fetch y mostrar en cart.html cada dato del videojuego
-//los subtotales por cada videojuego
-//el subtotal de todos los videojuegos (suma de los subtotales), utilizar funcion 
-//el total del carrito (coincide con el subtotal, utilizar la funcion cartTotalCost)
 document.addEventListener("DOMContentLoaded", function(e) {
-    fetch(CART_INFO_URL_DESAFIANTE)
-        .then(response => {
-            return response.json();
-        })
-        .then(response => {
-            let cartItem = response;
-            showCartProdsAndTotalCost(cartItem.articles);
-            document.getElementById("total").innerHTML = "USD" + cartTotalCost(cartItem.articles);
-            document.getElementById("subtotal").innerHTML = "USD" + productSubTotalTotal(cartItem.articles)
-        });
-
-});
+    getJSONData(CART_INFO_URL_DESAFIANTE).then(function(resultObj) {
+        if (resultObj.status === 'ok') {
+            arrayArticles = resultObj.data.articles;
+            showCartArticles(arrayArticles);
+        }
+    });
+})
