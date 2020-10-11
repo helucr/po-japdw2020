@@ -72,7 +72,7 @@ function showCartArticles(articles) {
 
         HTMLcont += `
         <tr>
-        <td scope="col"><img src='${articles[i].src}' width="50px"></td>
+        <td scope="col"><img src='${articles[i].src}' height="125px"></td>
         <td scope="col">${articles[i].name}</td>
         <td scope="col"> USD ${articlePriceUSD}</td>
         <td scope="col"><input class="form-control countArticle" style="width:60px;" type="number" id="productCount-${i}" value="${articles[i].count}" min="1"></td>
