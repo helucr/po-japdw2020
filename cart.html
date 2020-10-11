@@ -46,9 +46,11 @@
     <div class="container">
         <div class="text-center p-4">
             <h2>Carrito de compras</h2>
+            <p class="lead">Verifique y complete los detalles de su compra</p>
         </div>
 
         <!--Mostrar productos-->
+        <h4 class="mb-3">Productos seleccionados</h4>
         <table class="table">
             <thead class="thead-dark">
                 <tr>
@@ -66,63 +68,119 @@
         <!-- Tipo de envío -->
         <div class="row">
             <div class="col-12">
-                <h4 class="mb-3 text-center">Detalles del envío</h4>
-                <form d-flex align-items-stretch>
-                    <div class="form-group w-75">
-                        <label for="">Calle</label>
-                        <input type="text" class="form-control" id="street" placeholder="Calle">
+                <h5 class="mb-3">Dirección de entrega</h5>
+                <form id="shippingDetails" d-flex align-items-stretch>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="shippingAddress">Calle</label>
+                            <input type="text" class="form-control" id="shippingAddress" placeholder="Ingrese la calle" value="">
+                            <div class="invalid-feedback">
+                                Ingrese la calle
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="shippingAddressNum">Número</label>
+                            <input type="text" class="form-control" id="shippingAddressNum" placeholder="Nro. puerta" value="">
+                            <div class="invalid-feedback">
+                                Ingrese número de puerta
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="shippingAddressNumApto">Apto.</label>
+                            <input type="text" class="form-control" id="shippingAddressNumApto" placeholder="Apto." value="">
+                            <div class="invalid-feedback">
+                                Ingrese número de apartamento
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group w-25">
-                        <label for="">Número de puerta</label>
-                        <input type="text" class="form-control" id="" placeholder="Número de puerta">
-                    </div>
-                    <div class="form-group w-75">
-                        <label for="">Esquina</label>
-                        <input type="text" class="form-control" id="" placeholder="Esquina">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="shippingAddressCorner">Calle esquina</label>
+                            <input type="text" class="form-control" id="shippingAddressCorner" placeholder="Ingrese calle esquina" value="">
+
+
+                            <div class="invalid-feedback">
+                                Ingrese la </div>
+
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="state">País</label>
+                            <select class="custom-select d-block w-100" id="countryShipping">
+                            <option>Uruguay</option>
+                        </select>
+                        </div>
+
                     </div>
 
-                    <div class="form-group w-25">
-                        <label for="">País</label>
-                        <input type="text" class="form-control" id="" placeholder="País">
-                    </div>
+                    <h5 class="mb-3">Tipo de envío</h5>
+                    <div class="d-block my-3">
+                        <div class="custom-control custom-radio">
+                            <input id="premiumShipping" name="shipping" type="radio" class="custom-control-input" checked="" required="">
+                            <label class="custom-control-label" for="premiumShipping">Premium (2-5 días) - Costo del 15% sobre el subtotal.</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input id="expressShipping" name="shipping" type="radio" class="custom-control-input" required="">
+                            <label class="custom-control-label" for="expressShipping">Express (5-8 días) - Costo del 7% sobre el subtotal.</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input id="standardShipping" name="shipping" type="radio" class="custom-control-input" required="">
+                            <label class="custom-control-label" for="standardShipping">Standard (12 a 15 días) - Costo del 5% sobre el subtotal.</label>
+                        </div>
 
-                    <div class="form-group">
-                        <input type="radio" id="premiumShipping" name="shipping" value="15" onchange='shippingCost()'>
-                        <label for="premiumShipping">Premium (2-5 días) - Costo del 15% sobre el subtotal.</label><br>
-
-                        <input type="radio" id="" name="shipping" value="7" onchange='shippingCost()'>
-                        <label for="expressShipping">Express (5-8 días) - Costo del 7% sobre el subtotal.</label><br>
-
-                        <input type="radio" id="" name="shipping" value="5" onchange='shippingCost()'>
-                        <label for="standardShipping">Standard (12 a 15 días) - Costo del 5% sobre el subtotal.</label>
                     </div>
                 </form>
-
-                <form id="selectShipping">
-
-                </form>
-
-
 
             </div>
         </div>
         <br>
         <!--Mostrar costos-->
         <div class="row">
-            <div class="col">
+
+            <div class="col-10 align-self-center">
                 <h4 class="mb-3 text-center">Costos</h4>
                 <ul class="list-group mb-3">
+                    <!-- subtotal -->
                     <li class="list-group-item justify-content-between d-flex">
-                        <h5>SubTotal </h5><span id="subtotalCost" style="font-weight:bold"></span></li>
+                        <h5>Subtotal <br>
+                            <small class="text-muted">Costo total de los productos seleccionados</small>
+                        </h5>
+
+                        <span id="subtotalCost"> - </span>
+
+                    </li>
+                    <!-- Costo de envío -->
+                    <li class="list-group-item justify-content-between d-flex">
+                        <h5>Costo de envío <br>
+                            <small class="text-muted">Varía según el tipo de envío seleccionado</small>
+                        </h5>
+
+                        <span id="shippingCost"> - </span>
+
+                    </li>
+                    <!-- Precio total -->
                     <li class=" list-group-item justify-content-between d-flex ">
-                        <h5>Total </h5><span id="totalCost" style="font-weight:bold"></span>
+                        <h5>Total </h5>
+                        <span id="totalCost" style="font-weight:bold"></span>
                     </li>
                 </ul>
 
+
             </div>
+            <div class="col-2 align-self-center">
+
+                <button id="btnBuyCart" class="btn btn-primary btn-lg" type="submit">Comprar</button>
+
+            </div>
+
         </div>
 
+
+
+
+
+
     </div>
+
 
     <div id="spinner-wrapper">
         <div class="lds-ring">
