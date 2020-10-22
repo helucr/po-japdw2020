@@ -1,6 +1,7 @@
 let arrayArticles = [];
 let allSubtotals = 0;
 let rateUSD = 40;
+let shippingCost = 0;
 
 /* esta funcion recibe un producto y devuelve el costo total segun su precio unitario y la cantidad a comprar, si el valor está en pesos utilizando rateUSD se convierte el precio a Dólares */
 function subtotalPrice(count, index) {
@@ -27,13 +28,11 @@ function updateAllSubTotal() {
 
 }
 
-function shippingCost() {
-
-}
-
 function totalPrice() {
-    let total = allSubtotals;
+
+    let total = allSubtotals + shippingCost
     document.getElementById("totalCost").innerHTML = "USD " + total;
+
 }
 
 function addEventCount() {
@@ -48,6 +47,7 @@ function addEventCount() {
             }
 
             updateAllSubTotal();
+            calcShippingCost()
             calcTotal();
 
         });
@@ -56,6 +56,30 @@ function addEventCount() {
 
 
 }
+
+/* Calcular costo de envio */
+function calcShippingCost() {
+    let shippingArray = document.getElementsByName("shipping");
+
+    for (i = 0; i < shippingArray.length; i++) {
+        if (shippingArray[i].checked) {
+            shippingCost = shippingArray[i].value * allSubtotals / 100
+
+        }
+    }
+    /* mostrar costo del total */
+    document.getElementById("shippingCost").innerHTML = "USD " + shippingCost
+
+    /* Actualizar PRECIO TOTAL al modificar tipo de envío */
+    totalPrice();
+
+}
+
+
+
+
+
+
 
 
 function showCartArticles(articles) {
@@ -83,10 +107,18 @@ function showCartArticles(articles) {
     document.getElementById("cart-products").innerHTML = HTMLcont;
     addEventCount();
     updateAllSubTotal();
+    shippingCost();
     totalPrice();
 
 
 }
+
+/* VALIDACIÓN FORMA DE PAGO */
+
+function payMethodValid() {
+
+}
+
 
 
 

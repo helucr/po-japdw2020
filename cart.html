@@ -11,6 +11,7 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 
     <style>
         .bd-placeholder-img {
@@ -106,79 +107,227 @@
                         <div class="col-md-6 mb-3">
                             <label for="state">País</label>
                             <select class="custom-select d-block w-100" id="countryShipping">
-                            <option>Uruguay</option>
-                        </select>
+                                <option>Uruguay</option>
+                            </select>
                         </div>
 
                     </div>
 
-                    <h5 class="mb-3">Tipo de envío</h5>
-                    <div class="d-block my-3">
-                        <div class="custom-control custom-radio">
-                            <input id="premiumShipping" name="shipping" type="radio" class="custom-control-input" checked="" required="">
-                            <label class="custom-control-label" for="premiumShipping">Premium (2-5 días) - Costo del 15% sobre el subtotal.</label>
+                    <div class="row">
+
+                        <div class="d-block my-3 col-6">
+                            <h5 class="col-6 mb-3">Tipo de envío</h5>
+                            <div class="custom-control custom-radio">
+                                <input id="premiumShipping" name="shipping" type="radio" class="custom-control-input" required="" value="15" onclick="calcShippingCost()">
+                                <label class="custom-control-label" for="premiumShipping">Premium (2-5 días) - Costo del
+                                    15% sobre el subtotal.</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input id="expressShipping" name="shipping" type="radio" class="custom-control-input" required="" value="7" onclick="calcShippingCost()">
+                                <label class="custom-control-label" for="expressShipping">Express (5-8 días) - Costo del
+                                    7% sobre el subtotal.</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input id="standardShipping" name="shipping" type="radio" class="custom-control-input" required="" value="5" onclick="calcShippingCost()">
+                                <label class="custom-control-label" for="standardShipping">Standard (12 a 15 días) -
+                                    Costo del 5% sobre el subtotal.</label>
+                            </div>
+
                         </div>
-                        <div class="custom-control custom-radio">
-                            <input id="expressShipping" name="shipping" type="radio" class="custom-control-input" required="">
-                            <label class="custom-control-label" for="expressShipping">Express (5-8 días) - Costo del 7% sobre el subtotal.</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input id="standardShipping" name="shipping" type="radio" class="custom-control-input" required="">
-                            <label class="custom-control-label" for="standardShipping">Standard (12 a 15 días) - Costo del 5% sobre el subtotal.</label>
+                        <div class="d-block align-items-start my-3 col-6">
+
+                            <h5 class="mb-3">Forma de pago</h5>
+                            <p class="mb-3">Podrá abonar por transferencia bancaria o con tarjetas de crédito o débito &nbsp;<i class="fab fa-cc-visa"></i>&nbsp;&nbsp;<i class="fab fa-cc-mastercard"></i></p>
+
+                            <!-- Botón que dispara el modal FORMA DE PAGO-->
+                            <button id="btnPaymentOptions" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#staticBackdrop">
+                                Seleccionar forma de pago
+                            </button>
+
+
+                            <!-- Modal FORMA DE PAGO-->
+                            <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="staticBackdropLabel">Sekeccionar forma de pago
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+
+                                            <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
+                                                <li class="nav-item">
+                                                    <a id="cardTab" class="nav-link active" data-toggle="pill" href="#nav-tab-card">
+                                                        <i class="fa fa-credit-card"></i> Tarjeta de crédito</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a id="bankTab" class="nav-link" data-toggle="pill" href="#nav-tab-bank">
+                                                        <i class="fa fa-university"></i> Transferencia</a>
+                                                </li>
+                                            </ul>
+
+                                            <div class="tab-content">
+                                                <div class="tab-pane fade show active" id="nav-tab-card">
+
+                                                    <form role="form">
+                                                        <div class="form-group">
+                                                            <label for="username">Nombre completo (como en la
+                                                                tarjeta)</label>
+                                                            <input type="text" class="form-control" name="username" placeholder="" required>
+                                                        </div>
+
+
+                                                        <div class="form-group">
+                                                            <label for="cardNumber">Número de tarjeta</label>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" name="cardNumber" placeholder="" required>
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text text-muted">
+                                                                        <i class="fab fa-cc-visa"></i>&nbsp;
+                                                                        <i class="fab fa-cc-mastercard"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-sm-8">
+                                                                <div class="form-group">
+                                                                    <label><span class="hidden-xs">Vencimiento</span>
+                                                                    </label>
+                                                                    <div class="input-group">
+                                                                        <input type="number" class="form-control" placeholder="MM" name="" required>
+                                                                        <input type="number" class="form-control" placeholder="YY" name="" required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <div class="form-group">
+                                                                    <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">CVV
+                                                                        <i class="fa fa-question-circle"></i></label>
+                                                                    <input type="number" class="form-control" required>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </form>
+                                                </div>
+
+                                                <div class="tab-pane fade" id="nav-tab-bank">
+                                                    <form role="form">
+                                                        <div class="form-group">
+                                                            <label for="usernameTab2">Nombre completo</label>
+                                                            <input type="text" class="form-control" name="usernameTab2" placeholder="" required>
+                                                        </div>
+
+
+                                                        <div class="form-group">
+                                                            <label for="cardNumber">Número de cuenta</label>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" name="cardNumber" placeholder="" required>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="state">Banco</label>
+                                                            <select class="custom-select d-block w-100" id="bankName">
+                                                                <option value="BROU">BROU</option>
+                                                                <option value="SCOTIABANK">SCOTIABANK</option>
+                                                                <option value="SANTANDER">SANTANDER</option>
+                                                                <option value="ITAÚ">ITAÚ</option>
+                                                                <option value="BBVA">BBVA</option>
+                                                                <option value="HSBC">HSBC</option>
+                                                            </select>
+
+                                                        </div>
+
+                                                    </form>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="modal-footer justify-content-between d-flex">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar
+                                                sin confirmar</button>
+
+                                            <!-- Botón confirmar forma de pago -->
+                                            <button id="btnPaymentConfirm" type="submit" class="btn btn-primary">
+                                                <i class="fa fa-shopping-cart"></i>&nbsp;
+                                                Confirmar forma de pago</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
                         </div>
 
                     </div>
-                </form>
 
+                    <br>
+                    <!--Mostrar costos-->
+                    <div class="row">
+                        <div class="col-1"></div>
+
+                        <div class="col-10 align-self-center">
+                            <h4 class="mb-3 text-center">Costos</h4>
+                            <ul class="list-group mb-3">
+                                <!-- subtotal -->
+                                <li class="list-group-item justify-content-between d-flex">
+                                    <h5>Subtotal <br>
+                                        <small class="text-muted">Costo total de los productos seleccionados</small>
+                                    </h5>
+
+                                    <span id="subtotalCost"> - </span>
+
+                                </li>
+                                <!-- Costo de envío -->
+                                <li class="list-group-item justify-content-between d-flex">
+                                    <h5>Costo de envío <br>
+                                        <small class="text-muted">Varía según el tipo de envío seleccionado</small>
+                                    </h5>
+
+                                    <span id="shippingCost"> - </span>
+
+                                </li>
+                                <!-- Precio total -->
+                                <li class=" list-group-item justify-content-between d-flex ">
+                                    <h5>Total </h5>
+                                    <span id="totalCost" style="font-weight:bold"></span>
+                                </li>
+                            </ul>
+
+                            <div class="justify-content-center d-flex">
+
+                                <div class="d-inline-flex my-3 ">
+
+                                    <button id="btnBuyCart" type="button" class="btn btn-primary btn-lg d-inline-flex ">
+                                        Finalizar compra&nbsp;&nbsp;<i class="fa fa-check" aria-hidden="true"></i>
+                                    </button>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+                    </div>
             </div>
+            </form>
         </div>
-        <br>
-        <!--Mostrar costos-->
-        <div class="row">
-
-            <div class="col-10 align-self-center">
-                <h4 class="mb-3 text-center">Costos</h4>
-                <ul class="list-group mb-3">
-                    <!-- subtotal -->
-                    <li class="list-group-item justify-content-between d-flex">
-                        <h5>Subtotal <br>
-                            <small class="text-muted">Costo total de los productos seleccionados</small>
-                        </h5>
-
-                        <span id="subtotalCost"> - </span>
-
-                    </li>
-                    <!-- Costo de envío -->
-                    <li class="list-group-item justify-content-between d-flex">
-                        <h5>Costo de envío <br>
-                            <small class="text-muted">Varía según el tipo de envío seleccionado</small>
-                        </h5>
-
-                        <span id="shippingCost"> - </span>
-
-                    </li>
-                    <!-- Precio total -->
-                    <li class=" list-group-item justify-content-between d-flex ">
-                        <h5>Total </h5>
-                        <span id="totalCost" style="font-weight:bold"></span>
-                    </li>
-                </ul>
-
-
-            </div>
-            <div class="col-2 align-self-center">
-
-                <button id="btnBuyCart" class="btn btn-primary btn-lg" type="submit">Comprar</button>
-
-            </div>
-
-        </div>
-
-
-
-
-
-
+    </div>
     </div>
 
 

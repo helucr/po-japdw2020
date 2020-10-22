@@ -371,7 +371,12 @@ ul.slider li:target {
 }
 
 #btnAddToCart {
-    background-color: #343a40;
+    background-color: #d41c6c;
+    border: none;
+}
+
+#btnAddToCart:hover {
+    background-color: #B4004F;
     border: none;
 }
 
@@ -379,6 +384,32 @@ ul.slider li:target {
 /* Estilo botón comprar cart.html */
 
 #btnBuyCart {
-    background-color: #343a40;
+    background-color: #d41c6c;
     border: none;
+}
+
+#btnBuyCart:hover {
+    background-color: #B4004F;
+    border: none;
+}
+
+
+/* Estilo pestañas modal forma de pago */
+
+li.nav-item a {
+    display: block;
+    border-radius: 7px;
+    text-align: center;
+    margin: 30px auto;
+    background-color: #405a7552;
+    color: #405a75;
+}
+
+li.nav-item a:hover {
+    color: #fff;
+}
+
+.nav-pills .nav-link.active {
+    color: #fff;
+    background-color: #405a75;
 }
