@@ -24,8 +24,14 @@ function updateAllSubTotal() {
 
 
     for (let i = 0; i < subtotalArray.length; i++) {
+        let item = subtotalArray[i];
+        newI = i;
+        while (item === 'undefined' || item === null) {
+            newI = (newI + 1);
+            item = subtotalArray[newI];
+        }
 
-        subtotal += subtotalPrice(subtotalArray[i].value, i); /* se recorre el array y del se toma  el valor de cada articulo en funcion de su index (i) y se agregar a subtotal*/
+        subtotal += subtotalPrice(item.value, newI); /* se recorre el array y del se toma  el valor de cada articulo en funcion de su index (i) y se agregar a subtotal*/
     }
 
 
@@ -55,7 +61,7 @@ function addEventCount() {
 
             updateAllSubTotal();
             calcShippingCost()
-            calcTotal();
+            totalPrice();
 
         });
 
