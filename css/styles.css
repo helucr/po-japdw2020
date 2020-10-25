@@ -394,6 +394,13 @@ ul.slider li:target {
 }
 
 
+/* Btn eliminar producto*/
+
+.fa-trash {
+    color: #d41c6c;
+}
+
+
 /* Estilo pestañas modal forma de pago */
 
 li.nav-item a {

@@ -21,9 +21,14 @@ function subtotalPrice(count, index) {
 function updateAllSubTotal() {
     let subtotalArray = document.getElementsByClassName("countArticle"); /* Se genera un array con los inputs (uno para cada artículo) */
     let subtotal = 0;
+
+
     for (let i = 0; i < subtotalArray.length; i++) {
+
         subtotal += subtotalPrice(subtotalArray[i].value, i); /* se recorre el array y del se toma  el valor de cada articulo en funcion de su index (i) y se agregar a subtotal*/
     }
+
+
     document.getElementById("subtotalCost").innerHTML = "USD " + subtotal; /* se modifica el subtotal general */
     allSubtotals = subtotal;
     totalPrice();
@@ -73,6 +78,20 @@ function calcShippingCost() {
     document.getElementById("shippingCost").innerHTML = "USD " + shippingCost
 
     /* Actualizar PRECIO TOTAL al modificar tipo de envío */
+    totalPrice();
+
+}
+
+/* ELIMINAR PRODUCTOS */
+function eraseProduct(btn) {
+    let parent = document.getElementById("cart-products");
+    let product = document.getElementById(btn);
+
+    parent.removeChild(product);
+
+    addEventCount();
+    updateAllSubTotal();
+    calcShippingCost();
     totalPrice();
 
 }
@@ -175,11 +194,6 @@ function buyProducts() {
         alert('Debe ingresar un método de pago.')
     }
 
-
-
-
-
-
 };
 
 
@@ -197,13 +211,14 @@ function showCartArticles(articles) {
         }
 
         HTMLcont += `
-        <tr>
-        <td scope="col"><img src='${articles[i].src}' height="125px"></td>
-        <td scope="col">${articles[i].name}</td>
-        <td scope="col"> USD ${articlePriceUSD}</td>
-        <td scope="col"><input class="form-control countArticle" style="width:60px;" type="number" id="productCount-${i}" value="${articles[i].count}" min="1"></td>
-        <td scope="col"><span id="productSubtotal-${i}" style="font-weight:bold;"> USD ${articlePriceUSD * articles[i].count}</span></td>
-    </tr>
+        <tr id="${i}" class="product">
+            <td scope="col"><img src='${articles[i].src}' height="125px"></td>
+            <td scope="col">${articles[i].name}</td>
+            <td scope="col"> USD ${articlePriceUSD}</td>
+            <td scope="col"><input class="form-control countArticle" style="width:60px;" type="number" id="productCount-${i}" value="${articles[i].count}" min="1"></td>
+            <td scope="col"><span id="productSubtotal-${i}" style="font-weight:bold;"> USD ${articlePriceUSD * articles[i].count}</span></td>
+            <td scope="col"><button type="button" class="btn btn-link trash" onclick="eraseProduct(${i});"><i class="fas fa-trash"></i></button></td>
+        </tr>
             `
     }
     document.getElementById("cart-products").innerHTML = HTMLcont;
