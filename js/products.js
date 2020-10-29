@@ -72,20 +72,21 @@ function showProductsList() {
 
 
             htmlContentToAppend += `
-            <a href="product-info.html" class="list-group-item list-group-item-action">
-                <div class="row">
-                    <div class="col-3">
+            <a href="product-info.html" class="list-group-item list-group-item-action col-md-4 mx-1 my-2">
+                <div class="row px-1">
+                    <div>
                         <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-thumbnail">
                     </div>
-                    <div class="col">
-                        <div class="d-flex w-100 justify-content-between">
+                </div>
+                <div class="row my-1 px-2">
+                    <div class="d-flex w-100 justify-content-between">
                             <h4 class="mb-1">` + product.name + `</h4>
                             <small class="text-muted">` + product.soldCount + ` artículos</small>
-                        </div>
-                        <p class="mb-1">` + product.description + `</p>
-                        <br>
-                        <h5>` + product.cost + ` ` + product.currency + `.</h5>
                     </div>
+                        <p class="mb-1">` + product.description + `</p>
+                </div>
+                <div class="row mt-2 justify-content-end px-3">
+                    <h5>` + product.cost + ` ` + product.currency + `.</h5>
                 </div>
             </a>
             `
