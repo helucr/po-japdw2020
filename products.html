@@ -38,60 +38,67 @@
                 <p class="lead">Verás aquí todos los productos del sitio.</p>
             </div>
 
-            <div class="row">
-                <div class="col text-right">
-                    <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
-                        <div class="col">
-                            <!-- Barra de búsqueda -->
-                            <form class="form-inline">
-                                <input id="searchInput" class="form-control" type="text" placeholder="Buscar" aria-label="Search">
-                            </form>
-                        </div>
-                        <label class="btn btn-light active" id="sortAsc">
-                      <input type="radio" name="options" autocomplete="off" checked>Menor Precio
-                    </label>
-                        <label class="btn btn-light" id="sortDesc">
-                      <input type="radio" name="options" autocomplete="off">Mayor precio
-                    </label>
-                        <label class="btn btn-light" id="sortByCountAsc">
-                      <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Relevancia
-                    </label>
-                        <label class="btn btn-light" id="sortByCountDesc">
-                      <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-up mr-1"></i>Relevancia
-                    </label>
+
+            <div class="row align-items-center">
+                <div class="col-md-6 col-sm-12 text-right">
+                    <!-- Barra de búsqueda -->
+                    <form class="form-inline">
+                        <input id="searchInput" class="form-control my-2" type="text" placeholder="Buscar" aria-label="Search">
+                    </form>
+
+                </div>
+
+                <div class="col-md-6 col-sm-12 text-right d-flex justify-content-center flex-wrap btn-group btn-group-toggle my-2" data-toggle="buttons">
+
+                    <label class="btn btn-light active" id="sortAsc">
+                            <input type="radio" name="options" autocomplete="off" checked>Menor Precio
+                        </label>
+                    <label class="btn btn-light" id="sortDesc">
+                            <input type="radio" name="options" autocomplete="off">Mayor precio
+                        </label>
+                    <label class="btn btn-light" id="sortByCountAsc">
+                            <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Relevancia
+                        </label>
+                    <label class="btn btn-light" id="sortByCountDesc">
+                            <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-up mr-1"></i>Relevancia
+                        </label>
 
 
-                    </div>
                 </div>
 
             </div>
 
-            <div class="row justify-content-end">
-                <div class="col-md-6"></div>
+            <div class="col-md-6 col-sm-12 mb-1 container">
 
-                <div class="col-md-6 col-sm-12 mb-1 container">
+                <div class="row container p-0 m-0">
 
-                    <div class="row container p-0 m-0">
-
-
-                        <div class="col">
-                            <p class="font-weight-normal text-right my-2">Precio</p>
-                        </div>
-                        <div class="col">
-                            <input class="form-control" type="number" placeholder="min." id="rangeFilterCountMin">
-                        </div>
-                        <div class="col">
-                            <input class="form-control" type="number" placeholder="máx." id="rangeFilterCountMax">
-                        </div>
-                        <div class="col-3 p-0">
-                            <div class="btn-group" role="group">
-                                <button class="btn btn-light btn-block" id="rangeFilterCount">Filtrar</button>
-                                <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
-                            </div>
+                    <div class="col">
+                        <p class="font-weight-normal text-right my-2">Precio</p>
+                    </div>
+                    <div class="col">
+                        <input class="form-control" type="number" placeholder="min." id="rangeFilterCountMin">
+                    </div>
+                    <div class="col">
+                        <input class="form-control" type="number" placeholder="máx." id="rangeFilterCountMax">
+                    </div>
+                    <div class="col-3 p-0">
+                        <div class="btn-group" role="group">
+                            <button class="btn btn-light btn-block" id="rangeFilterCount">Filtrar</button>
+                            <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+
+
+
+
+
+
+
+
 
             <div id="prodList" class="d-flex justify-content-center flex-wrap">
 
