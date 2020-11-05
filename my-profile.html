@@ -44,12 +44,90 @@
         </div>
     </nav>
     <div class="container p-5">
-        <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-            <h4 class="alert-heading">¡A trabajar! :)</h4>
-            <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 8/11/202020) -> Punto 1 y 2.</p>
-            <hr>
-            <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+        <div class="row justify-content-center">
+            <h2>Mi perfil</h2>
         </div>
+        <div class="row justify-content-center">
+            <h5>Datos personales</h5>
+        </div>
+
+        <div class="row mt-3 justify-content-center">
+            <div id="htmlUserData" class="col-6">
+                <p id="htmlUserName">Nombres: </p>
+                <p id="htmlUserSurname">Apellidos: </p>
+                <p id="htmlUserAge">Edad: </p>
+                <p id="htmlUserEmail">Email: </p>
+                <p id="htmlUserPhone">Teléfono de contacto: </p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <!-- modal formulario de datos -->
+
+            <button type="button" class="btn btn-primary my-4" data-toggle="modal" data-target="#userDataModal" onclick="modifyUserData()">
+            Modificar datos personales
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="userDataModal" tabindex="-1" role="dialog" aria-labelledby="userDataModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="userDataModalLabel">Modificación de datos personales</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="">
+
+                                <div class="row ">
+                                    <div class="form-group col-6">
+                                        <label for="userName">Nombres:</label>
+                                        <input class="form-control justify-content-cente" type="text" id="userName" placeholder="Ingresa tu nombre completo" name="nombre">
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label for="userSurname">Apellidos:</label>
+                                        <input class="form-control" type="text" id="userSurname" placeholder="Ingresa tu apellido completo" name="apellido">
+                                    </div>
+
+                                </div>
+                                <div class="row ">
+                                    <div class="form-group col-6">
+                                        <label for="userAge">Edad:</label>
+                                        <input class="form-control" type="text" id="userAge" placeholder="Ingresa tu edad" name="edad">
+                                    </div>
+
+                                    <div class="form-group col-6">
+                                        <label for="userEmail">Correo electrónico:</label>
+                                        <input class="form-control" type="text" id="userEmail" placeholder="Ingresa tu correo electrónico" name="email">
+                                    </div>
+
+                                </div>
+                                <div class="row ">
+                                    <div class="form-group col-6">
+                                        <label for="userPhone">Teléfono / Celular:</label>
+                                        <input class="form-control" type="text" id="userPhone" placeholder="Ingresa tu número de contacto" name="phone">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar sin guardar</button>
+                            <button type="button" class="btn btn-primary" onclick="saveAndShowUserData()">Guardar cambios</button>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
     </div>
     <footer class="text-muted bg-light">
         <div class="container">
@@ -60,7 +138,7 @@
     <div class="alert fade alert-success" role="alert" id="alertResult">
         <span id="resultSpan"></span>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
+        <span aria-hidden="true">&times;</span>
     </button>
     </div>
     <div id="spinner-wrapper">
