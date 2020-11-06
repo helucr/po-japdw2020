@@ -18,7 +18,7 @@ function subtotalPrice(count, index) {
 }
 
 /* Función que actualiza los subtotales al cambiar los valores de los input (cantidad de articulos a comprar) */
-function updateAllSubTotal() {
+function updateAllSubTotal(btn) {
     let subtotalArray = document.getElementsByClassName("countArticle"); /* Se genera un array con los inputs (uno para cada artículo) */
     let subtotal = 0;
 
@@ -26,9 +26,8 @@ function updateAllSubTotal() {
     for (let i = 0; i < subtotalArray.length; i++) {
         let item = subtotalArray[i];
         newI = i;
-        while (item === 'undefined' || item === null) {
-            newI = (newI + 1);
-            item = subtotalArray[newI];
+        if (btn === newI) {
+            newI = i + 1;
         }
 
         subtotal += subtotalPrice(item.value, newI); /* se recorre el array y del se toma  el valor de cada articulo en funcion de su index (i) y se agregar a subtotal*/
@@ -71,7 +70,7 @@ function addEventCount() {
 }
 
 /* Calcular costo de envio */
-function calcShippingCost() {
+function calcShippingCost(btn) {
     let shippingArray = document.getElementsByName("shipping");
 
     for (i = 0; i < shippingArray.length; i++) {
@@ -96,7 +95,7 @@ function eraseProduct(btn) {
     parent.removeChild(product);
 
     addEventCount();
-    updateAllSubTotal();
+    updateAllSubTotal(btn);
     calcShippingCost();
     totalPrice();
 
@@ -230,7 +229,7 @@ function showCartArticles(articles) {
     document.getElementById("cart-products").innerHTML = HTMLcont;
     addEventCount();
     updateAllSubTotal();
-    shippingCost();
+    calcShippingCost();
     totalPrice();
 
 
