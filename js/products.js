@@ -101,7 +101,7 @@ function search() {
     let htmlContentToAppend = '';
 
     for (product of currentProductsArray) {
-        let produc = currentProductsArray[product];
+        let product = currentProductsArray[product];
         let title = product.name.toLowerCase();
         let description = product.description.toLowerCase();
 
